@@ -1,0 +1,39 @@
+import java.util.*;
+
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+class Solution {
+   public List<List<Integer>> levelOrder(TreeNode root) {
+         if(root==null) {
+            return new ArrayList<List<Integer>>();
+         }
+         List<List<Integer>> res=new ArrayList<List<Integer>>();
+         Deque<TreeNode> queue=new LinkedList<TreeNode>();
+         queue.add(root);
+         while (queue.size()>0){
+         int size= queue.size();
+            ArrayList<Integer> tmp = new ArrayList<>();
+            for (int i=0;i<size;i++){
+               TreeNode T=queue.remove();
+               tmp.add(T.val);
+               if (T.left!=null){
+                  queue.add(T.left);
+               }
+               if (T.right!=null){
+                  queue.add(T.right);
+               }
+            }
+            res.add(tmp);
+         }
+return res;
+   }
+}
